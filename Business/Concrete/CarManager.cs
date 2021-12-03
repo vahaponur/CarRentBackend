@@ -31,7 +31,15 @@ namespace Business.Concrete
 
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
 
+        public Car Get(int carId)
+        {
+            return _carDal.Get(p => p.Id == carId);
+        }
 
         public List<Car> GetAll()
         {
@@ -48,6 +56,16 @@ namespace Business.Concrete
             return _carDal.GetAll(p => p.ColorId == colorId).ToList();
         }
 
-        
+        public void Update(Car car)
+        {
+            Car carToUpdate = Get(car.Id);
+            carToUpdate.Id = car.Id;
+            carToUpdate.BrandId = car.BrandId;
+            carToUpdate.ColorId = car.ColorId;
+            carToUpdate.DailyPrice = car.DailyPrice;
+            carToUpdate.Description = car.Description;
+            carToUpdate.ModelYear = car.ModelYear;
+            _carDal.Update(carToUpdate);
+        }
     }
 }

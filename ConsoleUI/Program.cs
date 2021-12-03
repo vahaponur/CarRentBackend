@@ -10,10 +10,9 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Car car1 = new Car { Id=1, DailyPrice = 2000,BrandId=1,ColorId=1, Description = "bir araba", ModelYear = 1995 };
-            carManager.Add(car1);
-
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Color color = new Color { Id = 3, Name = "Mavi" };
+            colorManager.Add(color);
         }
     }
 }

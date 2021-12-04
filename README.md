@@ -1,5 +1,6 @@
 # ReCapProject
 ReCap_Project kodlama.io
 
-Projenin calisması icin database ismi: CarRent,
-Alanlar Entities/Concrete içinden bakılabilir
+CarRent isimli bi db oluşturun,
+CarRentalDatabaseMaker sorgusunu çalıştırın.
+Mock car datası içindedir.

@@ -10,9 +10,10 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            Color color = new Color { Id = 5, Name = "Mavi" };
-            Console.WriteLine(colorManager.Add(color).Message); 
+            UserManager userManager = new UserManager(new EfUserDal());
+            User user1 = new User { Email = "vaap@deneme.com", FirstName = "Vahap Onur", LastName = "YILDIRIM", Password = "123456" };
+            var result = userManager.Add(user1);
+            Console.WriteLine(result.Message);
         }
     }
 }

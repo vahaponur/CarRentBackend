@@ -1,18 +1,16 @@
-﻿using Entitites.Concrete;
+﻿using Core.Utilities.Result.Abstract;
+using Entitites.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.Abstract
 {
-    public interface ICarService
+    public interface ICarService:ICrudBase<Car>
     {
-        List<Car> GetAll();
-        void Add(Car car);
-        void Update(Car car);
-        void Delete(Car car);
-        Car Get(int carId);
-        List<Car> GetAllByBrandId(int brandId);
-        List<Car> GetAllByColorId(int colorId);
+      
+       
+        IDataResult<List<Car>> GetAllByBrandId(int brandId);
+        IDataResult<List<Car>> GetAllByColorId(int colorId);
     }
 }

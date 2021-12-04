@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Result.Abstract;
+using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entitites.Concrete;
 using System;
@@ -17,7 +20,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length < 2) 
                 throw new Exception("Açıklama 2 harften büyük olmalıdır");
@@ -27,38 +30,41 @@ namespace Business.Concrete
 
             _carDal.Add(car);
 
+            return new SuccessResult(Messages.SuccessfullyAdded);
 
 
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.SuccessfullyDeleted);
         }
 
-        public Car Get(int carId)
+        public IDataResult<Car> Get(int entityId)
         {
-            return _carDal.Get(p => p.Id == carId);
+
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == entityId));
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll());
         }
 
-        public List<Car> GetAllByBrandId(int brandId)
+        public IDataResult<List<Car>> GetAllByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.BrandId == brandId).ToList();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == brandId).ToList());
         }
 
-        public List<Car> GetAllByColorId(int colorId)
+        public IDataResult<List<Car>> GetAllByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == colorId).ToList();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId).ToList());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            Car carToUpdate = Get(car.Id);
+            Car carToUpdate = _carDal.Get(p=>p.Id==car.Id);
             carToUpdate.Id = car.Id;
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
@@ -66,6 +72,7 @@ namespace Business.Concrete
             carToUpdate.Description = car.Description;
             carToUpdate.ModelYear = car.ModelYear;
             _carDal.Update(carToUpdate);
+            return new SuccessResult(Messages.SuccessfullyUpdated);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            Color color = new Color { Id = 3, Name = "Mavi" };
-            colorManager.Add(color);
+            Color color = new Color { Id = 5, Name = "Mavi" };
+            Console.WriteLine(colorManager.Add(color).Message); 
         }
     }
 }

@@ -1,15 +1,15 @@
 CREATE TABLE [dbo].[Colors] (
-    [Id]   INT	IDENTITY(1,1)          NOT NULL,
+    [Id]   INT	PRIMARY KEY IDENTITY(1,1)          NOT NULL,
     [Name] VARCHAR (50) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 CREATE TABLE [dbo].[Brands] (
-    [Id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Id]   INT       PRIMARY KEY   IDENTITY (1, 1) NOT NULL,
     [Name] VARCHAR (50) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 CREATE TABLE [dbo].[Cars] (
-    [Id]          INT          IDENTITY (1, 1) NOT NULL,
+    [Id]          INT     PRIMARY KEY     IDENTITY (1, 1) NOT NULL,
     [BrandId]     INT          NULL,
     [ColorId]     INT          NULL,
     [ModelYear]   INT          NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE [dbo].[Cars] (
     FOREIGN KEY ([ColorId]) REFERENCES [dbo].[Colors] ([Id])
 );
 CREATE TABLE [dbo].[Users](
-[Id]          INT          IDENTITY (1, 1) NOT NULL,
+[Id]          INT   PRIMARY KEY IDENTITY (1, 1) NOT NULL,
 [FirstName]   VARCHAR(50)  NOT NULL,
 [LastName]   VARCHAR(50)  NOT NULL,
 [Email] VARCHAR(255) NOT NULL,

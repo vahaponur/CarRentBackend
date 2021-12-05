@@ -33,13 +33,17 @@ CREATE TABLE [dbo].[Customers](
 FOREIGN KEY([CustomerId]) REFERENCES [dbo].[Users] ([Id])
 );
 
-CREATE TABLE [dbo].[Rentals](
-[Id] INT NOT NULL,
-[CarId] INT NOT NULL,
-[CustomerId] INT NOT NULL FOREIGN KEY([CustomerId]) REFERENCES [dbo].[Customers] ([Id])
-[RentDate] DATE NOT NULL,
-[ReturnDate] DATE NULL,
+CREATE TABLE [dbo].[Rentals] (
+    [Id]         INT IDENTITY(1,1)  NOT NULL,
+    [CarId]      INT  NOT NULL,
+    [CustomerId] INT  NOT NULL,
+    [RentDate]   DATE NOT NULL,
+    [ReturnDate] DATE NULL,
+    FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([Id]),
+    FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([Id])
 );
+
+
 
 insert into Colors (Name) values ('Violet');
 insert into Colors (Name) values ('Indigo');

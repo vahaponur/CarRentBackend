@@ -16,7 +16,8 @@ CREATE TABLE [dbo].[Cars] (
     [DailyPrice]  DECIMAL (18) NULL,
     [Description] TEXT         NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brands] ([Id])
+    FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brands] ([Id]),
+    FOREIGN KEY ([ColorId]) REFERENCES [dbo].[Colors] ([Id])
 );
 CREATE TABLE [dbo].[Users](
 [Id]          INT          IDENTITY (1, 1) NOT NULL,

@@ -64,14 +64,8 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            Car carToUpdate = _carDal.Get(p=>p.Id==car.Id);
-            carToUpdate.Id = car.Id;
-            carToUpdate.BrandId = car.BrandId;
-            carToUpdate.ColorId = car.ColorId;
-            carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
-            carToUpdate.ModelYear = car.ModelYear;
-            _carDal.Update(carToUpdate);
+    
+            _carDal.Update(car);
             return new SuccessResult(Messages.SuccessfullyUpdated);
         }
     }

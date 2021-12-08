@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
@@ -20,14 +22,10 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2) 
-                throw new Exception("Açıklama 2 harften büyük olmalıdır");
-                 
-            if (car.DailyPrice <= 0)
-                throw new Exception("Arabanın günlük fiyatı 0 dan büyük olmalıdır");
-
+ 
             _carDal.Add(car);
 
             return new SuccessResult(Messages.SuccessfullyAdded);

@@ -7,6 +7,9 @@ using Business.Concrete;
 using Business.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Abstract;
+using Autofac.Extras.DynamicProxy;
+using Castle.DynamicProxy;
+using Core.Utilities.Interceptors;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -32,6 +35,14 @@ namespace Business.DependencyResolvers.Autofac
             
             builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
             builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
 
 
         }

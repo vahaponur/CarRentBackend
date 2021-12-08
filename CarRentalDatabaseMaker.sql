@@ -30,7 +30,7 @@ CREATE TABLE [dbo].[Customers](
 [Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [UserId] INT NOT NULL,
 [CompanyName] VARCHAR(80) NULL,
-FOREIGN KEY([CustomerId]) REFERENCES [dbo].[Users] ([Id])
+FOREIGN KEY([UserId]) REFERENCES [dbo].[Users] ([Id])
 );
 
 CREATE TABLE [dbo].[Rentals] (

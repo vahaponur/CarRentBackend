@@ -22,13 +22,13 @@ namespace Business.Concrete
 
         public IResult Add(Photo entity)
         {
-            IResult applicaple = BusinessRules.Run();
+            IResult applicaple = BusinessRules.Run(MaxPictureSizeOk(entity.CarId,5));
 
             if (!applicaple.Success)
             {
                 return applicaple;  
             }
-
+            entity.Date = DateTime.UtcNow;
             _photoDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }
@@ -97,5 +97,16 @@ namespace Business.Concrete
             entity.ImagePath = new Guid().ToString();
             return new SuccessResult();
         }
+        private IResult MaxPictureSizeOk(int carId,int size)
+        {
+            int carPhotos = GetByCarId(carId).Data.Count;
+            if (size>carPhotos)
+            {
+                return new SuccessResult();
+            }
+            return new FailResult("This car already has "+size+" photos.");
+        }
+
+
     }
 }

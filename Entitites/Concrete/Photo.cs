@@ -13,11 +13,7 @@ namespace Entitites.Concrete
         public string ImagePath { get; set; }
         public DateTime Date
         {
-            get { return _date; }
-            set
-            {
-                _date = DateTime.Now;
-            }
-                }
+            get; set;
+        }
     }
 }

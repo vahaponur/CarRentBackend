@@ -14,12 +14,18 @@ namespace DataAccess.Concrete.EntityFramework
             Database = CarRent;Trusted_Connection=true";
             optionsBuilder.UseSqlServer(connection);
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Photo>().ToTable("CarImages");
+            modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasColumnName("ImagePath");
+        }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Photo> CarImages { get; set; }
     }
 }

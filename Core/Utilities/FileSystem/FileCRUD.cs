@@ -12,7 +12,7 @@ namespace Core.Utilities.FileSystem
 {
     public class FileCRUD
     {
-        public const long photoSize = 10485760;
+        public const long maxFileSize = 10485760;
         static string path = Directory.GetParent(Directory.GetCurrentDirectory().ToString()).FullName;
         
         public static string savingPath = path + @"/DataAccess/ExternalFiles";
@@ -20,7 +20,7 @@ namespace Core.Utilities.FileSystem
         public static IResult Add(IFormFile file, string path = "")
         {
             if (path == "") path = savingPath;
-            var result = BusinessRules.Run(FileSizeIsOk(photoSize,file));
+            var result = BusinessRules.Run(FileSizeIsOk(maxFileSize,file));
 
             if (result.Success)
             {
@@ -40,7 +40,7 @@ namespace Core.Utilities.FileSystem
 
         public static IResult Update(string path,IFormFile file)
         {
-            var result = BusinessRules.Run(FileSizeIsOk(photoSize, file));
+            var result = BusinessRules.Run(FileSizeIsOk(maxFileSize, file));
             if (result.Success)
             {
                 if (File.Exists(path))

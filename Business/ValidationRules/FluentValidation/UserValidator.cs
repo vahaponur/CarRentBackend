@@ -3,7 +3,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Core.Entities.Concrete;
 namespace Business.ValidationRules.FluentValidation
 {
     public class UserValidator:AbstractValidator<User>
@@ -16,7 +16,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(u => u.LastName).MinimumLength(3);
 
 
-            RuleFor(u => u.Email).Matches("/@+/");
+            RuleFor(u => u.Email).EmailAddress();
 
             
         }

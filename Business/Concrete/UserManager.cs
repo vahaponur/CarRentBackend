@@ -9,6 +9,7 @@ using Entitites.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Entities.Concrete;
 
 namespace Business.Concrete
 {
@@ -41,6 +42,16 @@ namespace Business.Concrete
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
+        }
+
+        public IDataResult<User> GetByEmail(string email)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u=>u.Email==email));
+        }
+
+        public IDataResult<List<OperationClaim>> GetOperationClaims(User entity)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(entity)) ;
         }
 
         public IResult Update(User entity)

@@ -10,6 +10,8 @@ using DataAccess.Abstract;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
+using Core.Utilities.Security.Token;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -38,6 +40,9 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<PhotoManager>().As<IPhotoService>().SingleInstance();
             builder.RegisterType<EfPhotoDal>().As<IPhotoDal>().SingleInstance();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

@@ -33,6 +33,7 @@ namespace Business.BusinessAspects
                 {
                     return;
                 }
+                
             }
             throw new Exception(Messages.AuthorizationDenied);
         }

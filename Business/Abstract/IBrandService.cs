@@ -7,6 +7,6 @@ namespace Business.Abstract
 {
     public interface IBrandService:ICrudBase<Brand>
     {
-      
+      //some yorum
     }
 }

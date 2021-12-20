@@ -1,11 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Utilities.Business;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entitites.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Concrete
@@ -21,6 +23,12 @@ namespace Business.Concrete
 
         public IResult Add(Rental entity)
         {
+            var rules =BusinessRules.Run(SetRentalDate(entity));
+            if (!rules.Success)
+            {
+                return rules;
+
+            }
             _rentalDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }
@@ -45,6 +53,20 @@ namespace Business.Concrete
         {
             _rentalDal.Update(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
+        }
+        [Obsolete("Deprecated.")]
+        public IResult SetRentDate(Rental entity)
+        {
+           
+            string sqlFormattedDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            DateTime.TryParse(sqlFormattedDate,out DateTime datenow);
+            entity.RentDate = datenow;
+            return new SuccessResult();
+        }
+        public IResult SetRentalDate(Rental entity)
+        {
+            entity.RentDate=DateTime.UtcNow;
+            return new SuccessResult();
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Core.Entities;
 using Core.Entities.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Entitites.Concrete
 {
@@ -11,7 +10,8 @@ namespace Entitites.Concrete
         public int Id { get; set; }
         public int CarId { get; set; }
         public int CustomerId { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+   
+        public DateTime? RentDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
     }
 }

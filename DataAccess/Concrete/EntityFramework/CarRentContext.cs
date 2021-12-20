@@ -6,7 +6,7 @@ using System.Text;
 using Core.Entities.Concrete;
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class CarRentContext:DbContext
+    public class CarRentContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Photo>().ToTable("CarImages");
             modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasColumnName("ImagePath");
+      
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }

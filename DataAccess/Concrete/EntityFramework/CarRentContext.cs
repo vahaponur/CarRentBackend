@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Entities.Concrete;
+using Core.Utilities.FileSystem;
+
 namespace DataAccess.Concrete.EntityFramework
 {
     public class CarRentContext : DbContext
@@ -19,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Photo>().ToTable("CarImages");
             modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasColumnName("ImagePath");
+            modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasDefaultValue(FileCRUD.savingPath + @"\def.jpg");
       
         }
         public DbSet<Car> Cars { get; set; }

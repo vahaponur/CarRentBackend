@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(Photo entity)
         {
-            IResult applicaple = BusinessRules.Run(MaxPictureSizeOk(entity.CarId,5));
+            IResult applicaple = BusinessRules.Run();
 
             if (!applicaple.Success)
             {

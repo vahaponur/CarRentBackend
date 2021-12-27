@@ -52,5 +52,23 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("addwhole")]
+        public IActionResult AddWhole(UserRegisterDto[] users)
+        {
+            foreach (var item in users)
+            {
+                var result = _authService.Register(item);
+
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
+
+            }
+            return Ok("eklendi");
+
+
+        }
     }
 }

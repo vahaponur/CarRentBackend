@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
         {
             _carService = carService;
         }
+        #region GET
 
         [HttpGet("getall")]
         public IActionResult GetAll()
@@ -41,6 +42,64 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getcardetails")]
+        public IActionResult GetCarDetails()
+        {
+            var result = _carService.GetCarDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getcardetailsbyid")]
+        public IActionResult GetCarDetailsById(int carId)
+        {
+            var result = _carService.GetCarDetailById(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbybrandid")]
+        public IActionResult GetCarsByBrandId(int brandId)
+        {
+            var result = _carService.GetAllByBrandId(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        } 
+        [HttpGet("getcardetailsbybrandid")]
+        public IActionResult GetCarDetailsByBrandId(int brandId)
+        {
+            var result = _carService.GetCarDetailsByBrandId(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getcardetailsbycolorid")]
+        public IActionResult GetCarDetailsByColorId(int colorId)
+        {
+            var result = _carService.GetCarDetailsByColorId(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        #endregion
+
+        #region POST
+
         [HttpPost("add")]
         public IActionResult Add(Car car)
         {
@@ -51,6 +110,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        #endregion
+
+        #region PATCH
 
         [HttpPatch("update")]
         public IActionResult Update(Car car)
@@ -63,6 +126,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        #endregion
+
+        #region DELETE
+
         [HttpDelete("delete")]
         public IActionResult Delete(Car car)
         {
@@ -73,6 +140,9 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        #endregion
+
 
     }
 }

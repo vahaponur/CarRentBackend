@@ -12,8 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using  Core.Aspects.Autofac.Caching;
-
-
+using Entitites.DTOs;
 
 namespace Business.Concrete
 {
@@ -67,7 +66,27 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId).ToList());
         }
-        
+
+        public IDataResult<CarDetailDto> GetCarDetailById(int carId)
+        {
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailById(carId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByBrandId(brandId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByColorId(colorId));
+        }
+
         [SecuredOperation("product.update,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]

@@ -31,10 +31,24 @@ namespace WebAPI.Controllers
             var carPhotos=_photoService.GetByCarId(carId);
             if (carPhotos.Data.Count>0)
             {
-                return Ok(carPhotos.Data);
+                return Ok(carPhotos);
             }
-            return Ok(FileCRUD.savingPath + "/def.jpg");
+            return Ok(FileCRUD.savingPath + @"\def.jpg");
             
+        }
+        [HttpGet("getall")]
+        public IActionResult GetAll( )
+        {
+            var carPhotos = _photoService.GetAll();
+            if (carPhotos.Success)
+            {
+                List<Photo> photos = carPhotos.Data;
+                Photo def = new Photo { CarId = 0, Date = DateTime.Now, Id = 0, ImagePath = FileCRUD.savingPath + @"\def.jpg" };
+                photos.Add(def);
+                return Ok(photos);
+            }
+            return BadRequest("Can't get photos");
+
         }
 
         #endregion
@@ -55,6 +69,7 @@ namespace WebAPI.Controllers
                 {
                     return Ok("Photo added");
                 }
+                FileCRUD.Delete(addResult.Message);
                 return BadRequest(result.Message);
 
             }

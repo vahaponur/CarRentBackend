@@ -15,7 +15,7 @@ namespace Core.Utilities.FileSystem
         public const long maxFileSize = 10485760;
         static string path = Directory.GetParent(Directory.GetCurrentDirectory().ToString()).FullName;
         
-        public static string savingPath = path + @"/DataAccess/ExternalFiles";
+        public static string savingPath = path + @"\DataAccess\ExternalFiles";
         
         public static IResult Add(IFormFile file, string path = "")
         {
@@ -24,7 +24,7 @@ namespace Core.Utilities.FileSystem
 
             if (result.Success)
             {
-                string pathToSave = path + @"/" + ToGuid() + System.IO.Path.GetExtension(file.FileName);
+                string pathToSave = path + @"\" + ToGuid() + System.IO.Path.GetExtension(file.FileName);
 
                 using (FileStream fileStream = System.IO.File.Create(pathToSave))
                 {

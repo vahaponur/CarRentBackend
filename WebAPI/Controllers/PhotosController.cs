@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
             {
                 return Ok(carPhotos);
             }
-            return Ok(FileCRUD.savingPath + @"\def.jpg");
+            return Ok("");
             
         }
         [HttpGet("getall")]

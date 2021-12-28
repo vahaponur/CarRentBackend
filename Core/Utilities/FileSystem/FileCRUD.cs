@@ -13,9 +13,9 @@ namespace Core.Utilities.FileSystem
     public class FileCRUD
     {
         public const long maxFileSize = 10485760;
-        static string path = Directory.GetParent(Directory.GetCurrentDirectory().ToString()).FullName;
+        static string path = @"C:\Users\vaap\source\repos\CarRentFrontend\src\assets\car_images";
         
-        public static string savingPath = path + @"\DataAccess\ExternalFiles";
+        public static string savingPath = path;
         
         public static IResult Add(IFormFile file, string path = "")
         {

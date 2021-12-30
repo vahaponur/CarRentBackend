@@ -54,6 +54,7 @@ namespace Business.Concrete
             _rentalDal.Update(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }
+
         [Obsolete("Deprecated.")]
         public IResult SetRentDate(Rental entity)
         {
@@ -65,7 +66,11 @@ namespace Business.Concrete
         }
         public IResult SetRentalDate(Rental entity)
         {
-            entity.RentDate=DateTime.UtcNow;
+            if (entity.RentDate ==null)
+            {
+                entity.RentDate = DateTime.UtcNow;
+
+            }
             return new SuccessResult();
         }
     }

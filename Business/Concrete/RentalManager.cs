@@ -63,7 +63,7 @@ namespace Business.Concrete
             DateTime.TryParse(sqlFormattedDate,out DateTime datenow);
             entity.RentDate = datenow;
             return new SuccessResult();
-        }
+        } 
         public IResult SetRentalDate(Rental entity)
         {
             if (entity.RentDate ==null)

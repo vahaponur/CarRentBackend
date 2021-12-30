@@ -1,5 +1,4 @@
-# ReCapProject
-ReCap_Project kodlama.io
+#Car Rental Project
 
 CarRent isimli bi db oluşturun,
 CarRentalDatabaseMaker sorgusunu çalıştırın.

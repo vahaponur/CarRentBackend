@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IRentalService:ICrudBase<Rental>
+   public interface IBankService
     {
-        IDataResult<Rental> GetByCarId(int carId);
+        IResult Payment(CreditCard creditCard);
     }
 }

@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface IRentalService:ICrudBase<Rental>
     {
-        IDataResult<Rental> GetByCarId(int carId);
+        IDataResult<Rental> GetLastByCarId(int carId);
     }
 }

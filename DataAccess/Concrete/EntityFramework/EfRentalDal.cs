@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentContext>, IRentalDal
     {
-        public Rental GetByCarId(int carId)
+        public Rental GetLastByCarId(int carId)
         {
             return GetAll(r => r.CarId == carId).OrderByDescending(r => r.Id).FirstOrDefault();
         }

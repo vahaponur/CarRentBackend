@@ -8,6 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IRentalDal:IEntityRepository<Rental>
     {
-        Rental GetByCarId(int carId);
+        Rental GetLastByCarId(int carId);
     }
 }

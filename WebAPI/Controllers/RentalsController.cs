@@ -44,10 +44,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbycarid")]
-        public IActionResult GetByCarId(int carId)
+        [HttpGet("getlastbycarid")]
+        public IActionResult GetLastByCarId(int carId)
         {
-            var result = _rentalService.GetByCarId(carId);
+            var result = _rentalService.GetLastByCarId(carId);
 
 
             if (result.Success)

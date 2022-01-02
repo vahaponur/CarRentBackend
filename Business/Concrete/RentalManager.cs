@@ -74,9 +74,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<Rental> GetByCarId(int carId)
+        public IDataResult<Rental> GetLastByCarId(int carId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.GetByCarId(carId));
+            return new SuccessDataResult<Rental>(_rentalDal.GetLastByCarId(carId));
         }
     }
 }

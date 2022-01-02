@@ -10,7 +10,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CreditCardValidator()
         {
-            RuleFor(c => c.Number).Must(c => c.ToString().Length == 16);
+            RuleFor(c => c.Number).Must(c => c.Length == 16);
+            RuleFor(c => c.Number).Must(number => long.TryParse(number, out _));
             RuleFor(c => c.OwnerName).Length(7, 50);
         }
     }

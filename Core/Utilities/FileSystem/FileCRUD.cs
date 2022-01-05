@@ -15,11 +15,11 @@ namespace Core.Utilities.FileSystem
         public const long maxFileSize = 10485760;
         static string path = @"C:\Users\vaap\source\repos\CarRentFrontend\src\assets\car_images";
         
-        public static string savingPath = path;
+        public const string SAVE_PATH = @"C:\Users\vaap\source\repos\CarRentFrontend\src\assets\car_images";
         
-        public static IResult Add(IFormFile file, string path = "")
+        public static IResult Add(IFormFile file, string path = FileCRUD.SAVE_PATH)
         {
-            if (path == "") path = savingPath;
+           
             var result = BusinessRules.Run(FileSizeIsOk(maxFileSize,file));
 
             if (result.Success)

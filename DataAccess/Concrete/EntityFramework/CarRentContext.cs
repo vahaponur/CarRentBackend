@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Photo>().ToTable("CarImages");
             modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasColumnName("ImagePath");
-            modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasDefaultValue(FileCRUD.savingPath + @"\def.jpg");
+            modelBuilder.Entity<Photo>().Property(p => p.ImagePath).HasDefaultValue(FileCRUD.SAVE_PATH + @"\def.jpg");
       
         }
         public DbSet<Car> Cars { get; set; }

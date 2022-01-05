@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         {
             _userService = userService;
         }
-
+        #region GET
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -45,8 +45,22 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getbyemail")]
+        public IActionResult GetByEmail(string email)
+        {
+            var result = _userService.GetByEmail(email);
 
-       
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+        #endregion
+
+
+
         [HttpPost("add")]
         public IActionResult Add(User user)
         {

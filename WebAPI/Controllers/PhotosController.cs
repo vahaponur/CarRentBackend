@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             if (carPhotos.Success)
             {
                 List<Photo> photos = carPhotos.Data;
-                Photo def = new Photo { CarId = 0, Date = DateTime.Now, Id = 0, ImagePath = FileCRUD.savingPath + @"\def.jpg" };
+                Photo def = new Photo { CarId = 0, Date = DateTime.Now, Id = 0, ImagePath = FileCRUD.SAVE_PATH + @"\def.jpg" };
                 photos.Add(def);
                 return Ok(photos);
             }

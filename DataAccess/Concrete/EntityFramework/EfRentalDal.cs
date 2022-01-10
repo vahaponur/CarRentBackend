@@ -14,5 +14,13 @@ namespace DataAccess.Concrete.EntityFramework
         {
             return GetAll(r => r.CarId == carId).OrderByDescending(r => r.Id).FirstOrDefault();
         }
+        public List<Rental> GetAllByCarId(int carId)
+        {
+            return GetAll(r => r.CarId == carId).ToList();
+        }
+        public List<Rental> GetFutureRentalsByCarId(int carId)
+        {
+            return GetAll(r => r.CarId == carId).Where(r => r.ReturnDate.GetValueOrDefault().Date > DateTime.Today).ToList();
+        }
     }
 }

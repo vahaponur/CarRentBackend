@@ -94,6 +94,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getavaliablecarsbydateinterval")]
+        public IActionResult GetAvaliableCarsByDateInterval(DateTime rentDate,DateTime returnDate)
+        {
+            var result = _carService.GetAvaliableCarsByDateInterval(rentDate,returnDate);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
 
         #endregion

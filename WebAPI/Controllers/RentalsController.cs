@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         {
             _rentalService = rentalService;
         }
-
+        #region GET
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -56,6 +56,19 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getundeliveredsbycarid")]
+        public IActionResult GetFutureRentalsByCarId(int carId)
+        {
+            var result = _rentalService.GetFutureRentalsByCarId(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+        #endregion
+
 
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
